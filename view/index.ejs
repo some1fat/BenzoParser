@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BenzoParser Main Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+    	$(document).ready(function() {
+    		$("#submitButton").click(function(){
+    			if (
+    				$("#urlToParse").val() != '' 
+    				&& 
+    				$("#urlToParse").val() != undefined
+				) {
+				/*
+				    $.ajax({
+				    	url: "/parser", 
+				    	method: "POST",
+				    	data: {
+				    		url: $("#urlToParse").val()
+				    	},
+				    	beforeSend: function() {
+				    		$('#resultDiv').html('');
+				    		$("#submitButton").prop('disabled', true);
+				    	},
+				    	success: function(result){
+				        	console.log(result);
+				        	$("#submitButton").prop('disabled', false);
+				        	$('#resultDiv').append(result);
+				    	}
+					});
+				*/
+				    $.ajax({
+				    	url: $("#urlToParse").val(), 
+				    	method: "GET",
+				    	beforeSend: function() {
+				    		$('#resultDiv').html('');
+				    		$("#submitButton").prop('disabled', true);
+				    	},
+				    	success: function(result){
+				        	console.log(result);
+				        	$("#submitButton").prop('disabled', false);
+				        	$('#resultDiv').append(result);
+				    	}
+					});
+				} else {
+					alert('URL should not be empty.');
+				}
+			});
+    	});
+    </script>
+</head>
+<body>
+	<input type="text" id="urlToParse" style="width:700px;" required/>
+	<input type="button" id="submitButton" value="Parse!" />
+	<br/>
+	<div id="resultDiv"></div>
+</body>
