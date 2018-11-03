@@ -14,24 +14,6 @@
     				&& 
     				$("#urlToParse").val() != undefined
 				) {
-				/*
-				    $.ajax({
-				    	url: "/parser", 
-				    	method: "POST",
-				    	data: {
-				    		url: $("#urlToParse").val()
-				    	},
-				    	beforeSend: function() {
-				    		$('#resultDiv').html('');
-				    		$("#submitButton").prop('disabled', true);
-				    	},
-				    	success: function(result){
-				        	console.log(result);
-				        	$("#submitButton").prop('disabled', false);
-				        	$('#resultDiv').append(result);
-				    	}
-					});
-				*/
 				    $.ajax({
 				    	url: $("#urlToParse").val(), 
 				    	method: "GET",
@@ -40,9 +22,26 @@
 				    		$("#submitButton").prop('disabled', true);
 				    	},
 				    	success: function(result){
-				        	console.log(result);
+				    		var tempResult = result.substring(result.indexOf('<p class="item-desc">'));
+				    		tempResult = tempResult.substring(0, tempResult.indexOf('</div>'));
+				        	$('#resultDiv').append(tempResult);
 				        	$("#submitButton").prop('disabled', false);
-				        	$('#resultDiv').append(result);
+
+						    /*
+						    $.ajax({
+						    	url: "/parser", 
+						    	method: "POST",
+						    	data: {
+						    		html: tempResult
+						    	},
+						    	success: function(result){
+						    		console.log('result!');
+						    		console.log(result);
+						        	$("#submitButton").prop('disabled', false);
+						        	$('#resultDiv').append(result);
+						    	}
+							});
+							*/
 				    	}
 					});
 				} else {
@@ -53,7 +52,7 @@
     </script>
 </head>
 <body>
-	<input type="text" id="urlToParse" style="width:700px;" required/>
+	<input type="text" id="urlToParse" style="width:700px;" required value="http://ecommerce.grundfos.ru/shop/otoplenie/cirkuljacionnye-nasosy-alpha2/alpha2-25-40-180-1.html"/>
 	<input type="button" id="submitButton" value="Parse!" />
 	<br/>
 	<div id="resultDiv"></div>
