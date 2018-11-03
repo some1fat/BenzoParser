@@ -22,6 +22,6 @@ app.all('*', function(req, res, next) {
 app.get('/', cIndex);
 app.post('/parser', cParser);
 
-app.listen(3000, function () {
-	console.log('BodyParser is running on port 3000!');
+app.listen(80, function () {
+	console.log('BodyParser is running on port 80!');
 });
