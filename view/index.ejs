@@ -19,12 +19,43 @@
 				    	method: "GET",
 				    	beforeSend: function() {
 				    		$('#resultDiv').html('');
+				    		$('#hiddenDiv').html('');
 				    		$("#submitButton").prop('disabled', true);
 				    	},
 				    	success: function(result){
 				    		var tempResult = result.substring(result.indexOf('<p class="item-desc">'));
 				    		tempResult = tempResult.substring(0, tempResult.indexOf('</div>'));
-				        	$('#resultDiv').append(tempResult);
+				        	$('#hiddenDiv').append(tempResult);
+
+				        	var propertiesArray = [
+				        		'Номер модели: ',
+								'Максимальный напор: ',
+								'Высота: ',
+								'Длина: ',
+								'Ширина: ',
+								'Вес: ',
+								'Пропускная способность: ',
+								'Материал корпуса: ',
+								'Уровень шума: ',
+								'Максимальное рабочее давление: ',
+								'Класс защиты: ',
+								'Минимальная потребляемая мощность: ',
+								'Максимальная потребляемая мощность: ',
+								'Качество воды: ',
+								'Допустимая температура перекачиваемой жидкости: ',
+								'Тип ротора: ',
+								'Диаметр разъема соединения: '
+				        	];
+				        	var tableHtml = '<tr>';
+				        	propertiesArray.forEach(function(element) {
+				        		var tmpAttribute = $('span:contains("' + element + '")').text();
+				        		tmpAttribute = tmpAttribute.replace(element,'');
+				        		tableHtml += '<td>' + tmpAttribute + '</td>'
+				        	});
+
+				        	tableHtml += '</tr>';
+
+							$('#resultDiv').text(tableHtml);
 				        	$("#submitButton").prop('disabled', false);
 				    	}
 					});
@@ -39,5 +70,6 @@
 	<input type="text" id="urlToParse" style="width:700px;" required value="http://ecommerce.grundfos.ru/shop/otoplenie/cirkuljacionnye-nasosy-alpha2/alpha2-25-40-180-1.html"/>
 	<input type="button" id="submitButton" value="Parse!" />
 	<br/>
+	<div id="hiddenDiv" style="display:none;"></div> 
 	<div id="resultDiv"></div>
 </body>
