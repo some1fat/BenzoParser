@@ -9,7 +9,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-var cParser = require('./controller/parser.js').cParser;
 var cIndex = require('./controller/index.js').cIndex;
 
 app.all('*', function(req, res, next) {
@@ -20,7 +19,6 @@ app.all('*', function(req, res, next) {
 });
 
 app.get('/', cIndex);
-app.post('/parser', cParser);
 
 app.listen(80, function () {
 	console.log('BodyParser is running on port 80!');

@@ -26,22 +26,6 @@
 				    		tempResult = tempResult.substring(0, tempResult.indexOf('</div>'));
 				        	$('#resultDiv').append(tempResult);
 				        	$("#submitButton").prop('disabled', false);
-
-						    /*
-						    $.ajax({
-						    	url: "/parser", 
-						    	method: "POST",
-						    	data: {
-						    		html: tempResult
-						    	},
-						    	success: function(result){
-						    		console.log('result!');
-						    		console.log(result);
-						        	$("#submitButton").prop('disabled', false);
-						        	$('#resultDiv').append(result);
-						    	}
-							});
-							*/
 				    	}
 					});
 				} else {
