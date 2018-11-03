@@ -22,3 +22,6 @@ Gets the following info:
 - допустимая температура перекачиваемой жидкости
 - тип ротора
 - диаметр разъема соединения
+
+Needs this Chrome extension:
+https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc
